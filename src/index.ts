@@ -2,6 +2,9 @@ import { Surface } from "./classes/Surface";
 import logger from "./helpers/logger";
 import { quickDraw } from "./helpers/quickDraw";
 
+/**
+ * Main process
+ */
 async function main() {
   logger.info("Start");
 

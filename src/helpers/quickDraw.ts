@@ -1,6 +1,14 @@
 import { Surface } from "../classes/Surface";
 import { ICoordinates } from "../interfaces/ICoordinates";
 
+/**
+ * Draw a surface with ASCII characters
+ * @param w wrapper
+ * @param w.surface surface to draw
+ * @param w.from bottom left corner
+ * @param w.to top left corner
+ * @param w.resolution number of characters used to draw in each direction
+ */
 export const quickDraw = ({
   surface,
   from = {

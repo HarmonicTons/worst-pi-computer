@@ -1,7 +1,11 @@
 import { createLogger, format, transports } from "winston";
 
+/**
+ * Application logger
+ * TODO set level in configuration
+ */
 const logger = createLogger({
-  defaultMeta: { service: "test-ts" },
+  defaultMeta: { service: "worst-pi-computer" },
   format: format.combine(
     format.timestamp({
       format: "YYYY-MM-DD HH:mm:ss"
