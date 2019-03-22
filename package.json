@@ -10,23 +10,33 @@
     "lint": "tslint -p tsconfig.json",
     "lint:fix": "tslint -p tsconfig.json --fix",
     "test": "jest",
-    "coverage": "jest  --collectCoverage"
+    "coverage": "jest  --collectCoverage",
+    "generate-docs": "typedoc --out docs src --module commonjs",
+    "dependencies-check": "npm-check -p"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^24.0.11",
+    "husky": "^1.3.1",
     "jest": "^24.5.0",
     "nodemon": "^1.18.10",
+    "npm-check": "^5.9.0",
     "prettier": "1.16.4",
     "ts-jest": "^24.0.0",
     "ts-node": "^8.0.3",
     "tslint": "^5.14.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
+    "typedoc": "^0.14.2",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
     "winston": "^3.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
+    }
   }
 }
