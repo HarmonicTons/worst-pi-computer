@@ -1,6 +1,7 @@
+import { Solid } from "./classes/Solid";
 import { Surface } from "./classes/Surface";
+import { World } from "./classes/World";
 import logger from "./helpers/logger";
-import { quickDraw } from "./helpers/quickDraw";
 
 /**
  * Main process
@@ -8,40 +9,46 @@ import { quickDraw } from "./helpers/quickDraw";
 async function main() {
   logger.info("Start");
 
-  const s1 = new Surface({
+  const world = new World();
+
+  const s1 = new Solid({
+    density: 1000,
     origin: { x: 0, y: 0 },
-    polarEquation: () => 1
+    polarEquation: () => 1,
+    speed: { x: 1, y: 0 }
   });
 
-  const square = new Surface({
-    origin: { x: 0, y: 0 },
-    polarEquation: angle =>
-      Math.min(Math.abs(1 / Math.cos(angle)), Math.abs(1 / Math.sin(angle)))
+  world.addSolid(s1);
+
+  const s2 = new Solid({
+    density: 1000,
+    origin: { x: 10, y: 0 },
+    polarEquation: () => 1,
+    speed: { x: 0, y: 0 }
   });
 
-  const triangle = new Surface({
-    origin: { x: 0, y: 0 },
-    polarEquation: angle => {
-      if (angle < Math.PI / 4 || angle > (3 * Math.PI) / 4) {
-        return 0;
-      }
-      return Math.min(
-        Math.abs(1 / Math.cos(angle)),
-        Math.abs(1 / Math.sin(angle))
-      );
-    }
-  });
+  world.addSolid(s2);
 
   logger.info(
-    quickDraw({
-      from: { x: -1.5, y: -1.5 },
-      resolution: 10,
-      surface: triangle,
-      to: { x: 1.5, y: 1.5 }
+    world.draw({
+      from: { x: -2, y: -1.5 },
+      to: { x: 12, y: 1.5 }
     })
   );
-
-  logger.info(JSON.stringify(triangle.barycenter));
+  world.updater.update(1);
+  logger.info(
+    world.draw({
+      from: { x: -2, y: -1.5 },
+      to: { x: 12, y: 1.5 }
+    })
+  );
+  world.updater.update(10);
+  logger.info(
+    world.draw({
+      from: { x: -2, y: -1.5 },
+      to: { x: 12, y: 1.5 }
+    })
+  );
 
   logger.info("End");
 }

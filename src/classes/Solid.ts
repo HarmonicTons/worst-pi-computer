@@ -1,9 +1,24 @@
+import { v4 as uuidv4 } from "uuid";
 import { ICoordinates } from "../interfaces/ICoordinates";
 import { IPolarEquation } from "../interfaces/IPolarEquation";
 import { Surface } from "./Surface";
 import { Vector } from "./Vector";
 
 export class Solid {
+  /**
+   * Mass in kg
+   */
+  get mass(): number {
+    return this.surface.area * this.density;
+  }
+
+  /**
+   * Kinetic energy in J
+   */
+  get kineticEnergy(): number {
+    return (this.mass * this.speed.size ** 2) / 2;
+  }
+  public id: string;
   public density: number;
   public speed: Vector;
   public surface: Surface;
@@ -27,22 +42,13 @@ export class Solid {
     speed: ICoordinates;
     polarEquation: IPolarEquation;
   }) {
+    this.id = uuidv4();
     this.surface = new Surface({ polarEquation, origin });
     this.density = density;
     this.speed = new Vector({ coordinates: speed });
   }
 
-  /**
-   * Mass in kg
-   */
-  get mass(): number {
-    return this.surface.area * this.density;
-  }
-
-  /**
-   * Kinetic energy in J
-   */
-  get kineticEnergy(): number {
-    return (this.mass * this.speed.size ** 2) / 2;
+  public translate(translationVector: ICoordinates): void {
+    return this.surface.translate(translationVector);
   }
 }
