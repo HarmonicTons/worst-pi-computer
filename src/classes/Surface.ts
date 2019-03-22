@@ -38,23 +38,22 @@ export class Surface {
   }
 
   get barycenter(): Point {
-    const baryvector = this.baryvector({});
-    return new Point(baryvector);
+    return this.integrate({}).barycenter;
   }
 
   get area(): number {
-    return this.integral({});
+    return this.integrate({}).area;
   }
 
   /**
-   * Compute integral of the surface's part
+   * Find the barycenter and the area of part of the surface
    * TODO memoize
    * @param w wrapper
    * @param [w.from=0] start angle
    * @param [w.to=2PI] end angle
    * @param [w.nbOfSteps] number of steps for computation
    */
-  public integral({
+  public integrate({
     from = 0,
     to = 2 * Math.PI,
     nbOfSteps = 1000
@@ -62,39 +61,7 @@ export class Surface {
     from?: number;
     to?: number;
     nbOfSteps?: number;
-  }): number {
-    const delta = (to - from) / nbOfSteps;
-    return [...Array(nbOfSteps)]
-      .fill(0)
-      .map((v, step) => {
-        const angle = step * delta + from;
-        return (
-          (this.polarEquation(angle) *
-            this.polarEquation(angle + delta) *
-            Math.sin(delta)) /
-          2
-        );
-      })
-      .reduce((sum, area) => sum + area, 0);
-  }
-
-  /**
-   * Find the baryvector of the surface's part
-   * TODO memoize
-   * @param w wrapper
-   * @param [w.from=0] start angle
-   * @param [w.to=2PI] end angle
-   * @param [w.nbOfSteps] number of steps for computation
-   */
-  public baryvector({
-    from = 0,
-    to = 2 * Math.PI,
-    nbOfSteps = 1000
-  }: {
-    from?: number;
-    to?: number;
-    nbOfSteps?: number;
-  }): Vector {
+  }): { barycenter: Point; area: number } {
     const delta = (to - from) / nbOfSteps;
     const { vector, area } = [...Array(nbOfSteps)]
       .fill(0)
@@ -125,10 +92,14 @@ export class Surface {
           vector: Vector.add(sumVector, v)
         })
       );
-    return Vector.add(
+    const baryvector = Vector.add(
       vector.scale(1 / area),
       new Vector({ coordinates: this.origin })
     );
+    return {
+      area,
+      barycenter: new Point(baryvector)
+    };
   }
 
   /**

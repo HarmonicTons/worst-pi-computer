@@ -97,15 +97,15 @@ describe("Surface area", () => {
   });
 
   test("get surface's part area", () => {
-    expect(circle.integral({ from: 0, to: Math.PI / 2 })).toBeCloseTo(
+    expect(circle.integrate({ from: 0, to: Math.PI / 2 }).area).toBeCloseTo(
       Math.PI / 4
     );
     expect(
-      circle.integral({ from: Math.PI / 4, to: (5 * Math.PI) / 4 })
+      circle.integrate({ from: Math.PI / 4, to: (5 * Math.PI) / 4 }).area
     ).toBeCloseTo(Math.PI / 2);
 
     expect(
-      square.integral({ from: Math.PI / 4, to: (3 * Math.PI) / 4 })
+      square.integrate({ from: Math.PI / 4, to: (3 * Math.PI) / 4 }).area
     ).toBeCloseTo(1);
   });
 });
@@ -143,14 +143,16 @@ describe("Barycenter", () => {
     expect(y).toBeCloseTo(-0.3);
   });
 
-  test("get baryvector of surface's part", () => {
+  test("get barycenter of surface's part", () => {
     const square = new Surface({
       origin: { x: 0.2, y: -0.1 },
       polarEquation: angle =>
         Math.min(Math.abs(1 / Math.cos(angle)), Math.abs(1 / Math.sin(angle)))
     });
 
-    const { x, y } = square.baryvector({ from: 0, to: Math.PI / 2 });
+    const {
+      barycenter: { x, y }
+    } = square.integrate({ from: 0, to: Math.PI / 2 });
     expect(x).toBeCloseTo(0.7);
     expect(y).toBeCloseTo(0.4);
   });

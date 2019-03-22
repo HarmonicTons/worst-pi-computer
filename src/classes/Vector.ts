@@ -58,6 +58,10 @@ export class Vector {
     }
   }
 
+  get size(): number {
+    return Math.sqrt(this.x ** 2 + this.y ** 2);
+  }
+
   /**
    * Scale a vector
    * @param factor scaling factor
