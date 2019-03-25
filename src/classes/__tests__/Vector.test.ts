@@ -38,3 +38,16 @@ test("should add two vectors", () => {
 
   expect(Vector.add(v1, v2)).toMatchObject({ x: 0.5, y: -3.2 });
 });
+
+test("should substract two vectors", () => {
+  const v1 = new Vector({ coordinates: { x: 1, y: -1.2 } });
+  const v2 = new Vector({ coordinates: { x: -0.5, y: -2 } });
+
+  expect(Vector.substract(v1, v2)).toMatchObject({ x: 1.5, y: 0.8 });
+});
+
+test("should multiply a vector and a scalar", () => {
+  const v = new Vector({ coordinates: { x: 1, y: -3 } });
+
+  expect(Vector.multiply(v, -5)).toMatchObject({ x: -5, y: 15 });
+});

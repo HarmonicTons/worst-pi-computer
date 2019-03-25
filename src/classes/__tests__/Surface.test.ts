@@ -193,3 +193,12 @@ test("draw", () => {
 ..............................
 ..............................`);
 });
+
+test("translate", () => {
+  const s = new Surface({ polarEquation: () => 1, origin: { x: -5, y: 6 } });
+  s.translate({ x: 10, y: 2 });
+  expect(s.origin).toMatchObject({
+    x: 5,
+    y: 8
+  });
+});

@@ -11,6 +11,14 @@ export class Vector {
     return new Vector({ coordinates: { x: v1.x + v2.x, y: v1.y + v2.y } });
   }
   /**
+   * Substract 2 vectors
+   * @param v1 vector 1
+   * @param v2 vector 2
+   */
+  public static substract(v1: Vector, v2: Vector): Vector {
+    return new Vector({ coordinates: { x: v1.x - v2.x, y: v1.y - v2.y } });
+  }
+  /**
    * Multiply a vector and a scalar
    * @param v vector
    * @param s scalar

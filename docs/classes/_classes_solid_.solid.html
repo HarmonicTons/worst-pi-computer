@@ -91,6 +91,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_solid_.solid.html#density" class="tsd-kind-icon">density</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_solid_.solid.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_solid_.solid.html#speed" class="tsd-kind-icon">speed</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_solid_.solid.html#surface" class="tsd-kind-icon">surface</a></li>
 							</ul>
@@ -98,7 +99,16 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_classes_solid_.solid.html#kineticenergy" class="tsd-kind-icon">kinetic<wbr>Energy</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_classes_solid_.solid.html#mass" class="tsd-kind-icon">mass</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_solid_.solid.html#translate" class="tsd-kind-icon">translate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_solid_.solid.html#checkforimpact" class="tsd-kind-icon">check<wbr>For<wbr>Impact</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_classes_solid_.solid.html#impact" class="tsd-kind-icon">impact</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Solid.ts#L9">classes/Solid.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L105">classes/Solid.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +185,17 @@
 					<div class="tsd-signature tsd-kind-icon">density<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Solid.ts#L7">classes/Solid.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L103">classes/Solid.ts:103</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L102">classes/Solid.ts:102</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">speed<span class="tsd-signature-symbol">:</span> <a href="_classes_vector_.vector.html" class="tsd-signature-type">Vector</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Solid.ts#L8">classes/Solid.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L104">classes/Solid.ts:104</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,13 +215,35 @@
 					<div class="tsd-signature tsd-kind-icon">surface<span class="tsd-signature-symbol">:</span> <a href="_classes_surface_.surface.html" class="tsd-signature-type">Surface</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Solid.ts#L9">classes/Solid.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L105">classes/Solid.ts:105</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="kineticenergy" class="tsd-anchor"></a>
+					<h3>kinetic<wbr>Energy</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> kineticEnergy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L18">classes/Solid.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Kinetic energy in J</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 					<a name="mass" class="tsd-anchor"></a>
 					<h3>mass</h3>
@@ -212,10 +254,121 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Solid.ts#L35">classes/Solid.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L11">classes/Solid.ts:11</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mass in kg</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="translate" class="tsd-anchor"></a>
+					<h3>translate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span>translationVector<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L132">classes/Solid.ts:132</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>translationVector: <a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="checkforimpact" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> check<wbr>For<wbr>Impact</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>For<wbr>Impact<span class="tsd-signature-symbol">(</span>s1<span class="tsd-signature-symbol">: </span><a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a>, s2<span class="tsd-signature-symbol">: </span><a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L27">classes/Solid.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Check if 2 solids are impacting</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s1: <a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>solid 1</p>
+									</div>
+								</li>
+								<li>
+									<h5>s2: <a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>solid 2</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+					<a name="impact" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> impact</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">impact<span class="tsd-signature-symbol">(</span>s1<span class="tsd-signature-symbol">: </span><a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a>, s2<span class="tsd-signature-symbol">: </span><a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a>, xAxis<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, yAxis<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Solid.ts#L56">classes/Solid.ts:56</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adjust the speed of 2 impacting solids</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s1: <a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>solid 1</p>
+									</div>
+								</li>
+								<li>
+									<h5>s2: <a href="_classes_solid_.solid.html" class="tsd-signature-type">Solid</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>solid 2</p>
+									</div>
+								</li>
+								<li>
+									<h5>xAxis: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>yAxis: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -237,7 +390,13 @@
 						<a href="../modules/_classes_surface_.html">"classes/<wbr>Surface"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_classes_updater_.html">"classes/<wbr>Updater"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_classes_vector_.html">"classes/<wbr>Vector"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_classes_world_.html">"classes/<wbr>World"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_classes___tests___solid_test_.html">"classes/__tests__/<wbr>Solid.test"</a>
@@ -282,13 +441,28 @@
 								<a href="_classes_solid_.solid.html#density" class="tsd-kind-icon">density</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_classes_solid_.solid.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_solid_.solid.html#speed" class="tsd-kind-icon">speed</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_solid_.solid.html#surface" class="tsd-kind-icon">surface</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_classes_solid_.solid.html#kineticenergy" class="tsd-kind-icon">kinetic<wbr>Energy</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_classes_solid_.solid.html#mass" class="tsd-kind-icon">mass</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_classes_solid_.solid.html#translate" class="tsd-kind-icon">translate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_classes_solid_.solid.html#checkforimpact" class="tsd-kind-icon">check<wbr>For<wbr>Impact</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-static">
+								<a href="_classes_solid_.solid.html#impact" class="tsd-kind-icon">impact</a>
 							</li>
 						</ul>
 					</li>

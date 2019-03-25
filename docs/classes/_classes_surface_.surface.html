@@ -90,6 +90,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_surface_.surface.html#integrate" class="tsd-kind-icon">integrate</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_surface_.surface.html#origin" class="tsd-kind-icon">origin</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_classes_surface_.surface.html#polarequation" class="tsd-kind-icon">polar<wbr>Equation</a></li>
 							</ul>
@@ -104,9 +105,9 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_surface_.surface.html#baryvector" class="tsd-kind-icon">baryvector</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_surface_.surface.html#integral" class="tsd-kind-icon">integral</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_surface_.surface.html#draw" class="tsd-kind-icon">draw</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_surface_.surface.html#pointisinside" class="tsd-kind-icon">point<wbr>IsInside</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_classes_surface_.surface.html#translate" class="tsd-kind-icon">translate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_classes_surface_.surface.html#intersect" class="tsd-kind-icon">intersect</a></li>
 							</ul>
 						</section>
@@ -125,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L21">classes/Surface.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L88">classes/Surface.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -173,12 +174,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="integrate" class="tsd-anchor"></a>
+					<h3>integrate</h3>
+					<div class="tsd-signature tsd-kind-icon">integrate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Memoized</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;memoize(({from &#x3D; 0,to &#x3D; 2 * Math.PI,nbOfSteps &#x3D; 1000}: {from?: number;to?: number;nbOfSteps?: number;}): { barycenter: Point; area: number } &#x3D;&gt; {const delta &#x3D; (to - from) / nbOfSteps;const { vector, area } &#x3D; [...Array(nbOfSteps)].fill(0).map((v, step) &#x3D;&gt; {const angle &#x3D; step * delta + from;const v1 &#x3D; new Vector({coordinates: {x: this.polarEquation(angle) * Math.cos(angle),y: this.polarEquation(angle) * Math.sin(angle)}});const v2 &#x3D; new Vector({coordinates: {x: this.polarEquation(angle + delta) * Math.cos(angle + delta),y: this.polarEquation(angle + delta) * Math.sin(angle + delta)}});const a &#x3D;(this.polarEquation(angle) *this.polarEquation(angle + delta) *Math.sin(delta)) /2;return { vector: Vector.add(v1, v2).scale(a / 3), area: a };}).reduce(({ vector: sumVector, area: sumArea }, { vector: v, area: a }) &#x3D;&gt; ({area: sumArea + a,vector: Vector.add(sumVector, v)}));const baryvector &#x3D; Vector.add(vector.scale(1 / area),new Vector({ coordinates: this.origin }));return {area,barycenter: new Point(baryvector)};})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L39">classes/Surface.ts:39</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Find the barycenter and the area of part of the surface
+							Memoized function</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>wrapper</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>angle</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>angle</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>of steps for computation</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="origin" class="tsd-anchor"></a>
 					<h3>origin</h3>
 					<div class="tsd-signature tsd-kind-icon">origin<span class="tsd-signature-symbol">:</span> <a href="_classes_point_.point.html" class="tsd-signature-type">Point</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L21">classes/Surface.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L29">classes/Surface.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -188,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">polar<wbr>Equation<span class="tsd-signature-symbol">:</span> <a href="../modules/_interfaces_ipolarequation_.html#ipolarequation" class="tsd-signature-type">IPolarEquation</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L20">classes/Surface.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L28">classes/Surface.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L45">classes/Surface.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L12">classes/Surface.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -222,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L40">classes/Surface.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L8">classes/Surface.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_classes_point_.point.html" class="tsd-signature-type">Point</a></h4>
@@ -233,22 +264,21 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="baryvector" class="tsd-anchor"></a>
-					<h3>baryvector</h3>
+					<a name="draw" class="tsd-anchor"></a>
+					<h3>draw</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">baryvector<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_classes_vector_.vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">draw<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L89">classes/Surface.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L128">classes/Surface.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Find the baryvector of the surface&#39;s part
-									TODO memoize</p>
+									<p>Draw the surface with ASCII characters</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -257,58 +287,42 @@
 									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
-											<h5>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+											<h5>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter">
+													<h5>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+												<li class="tsd-parameter">
+													<h5>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+											</ul>
 										</li>
 										<li class="tsd-parameter">
-											<h5>nb<wbr>OfSteps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+											<h5>resolution<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter">
+													<h5>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+												<li class="tsd-parameter">
+													<h5>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+											</ul>
 										</li>
 										<li class="tsd-parameter">
-											<h5>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+											<h5>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter">
+													<h5>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+												<li class="tsd-parameter">
+													<h5>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+												</li>
+											</ul>
 										</li>
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_classes_vector_.vector.html" class="tsd-signature-type">Vector</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="integral" class="tsd-anchor"></a>
-					<h3>integral</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">integral<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L57">classes/Surface.ts:57</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Compute integral of the surface&#39;s part
-									TODO memoize</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter">
-											<h5>from<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>nb<wbr>OfSteps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>to<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -322,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L138">classes/Surface.ts:138</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L111">classes/Surface.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,6 +357,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="translate" class="tsd-anchor"></a>
+					<h3>translate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">translate<span class="tsd-signature-symbol">(</span>translationVector<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L116">classes/Surface.ts:116</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>translationVector: <a href="../interfaces/_interfaces_icoordinates_.icoordinates.html" class="tsd-signature-type">ICoordinates</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="intersect" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> intersect</h3>
@@ -353,7 +390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/5cf9633/src/classes/Surface.ts#L12">classes/Surface.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/HarmonicTons/worst-pi-computer/blob/e5f5160/src/classes/Surface.ts#L20">classes/Surface.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -398,7 +435,13 @@
 						<a href="../modules/_classes_surface_.html">"classes/<wbr>Surface"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_classes_updater_.html">"classes/<wbr>Updater"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_classes_vector_.html">"classes/<wbr>Vector"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_classes_world_.html">"classes/<wbr>World"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_classes___tests___solid_test_.html">"classes/__tests__/<wbr>Solid.test"</a>
@@ -440,6 +483,9 @@
 								<a href="_classes_surface_.surface.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_classes_surface_.surface.html#integrate" class="tsd-kind-icon">integrate</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_classes_surface_.surface.html#origin" class="tsd-kind-icon">origin</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -452,13 +498,13 @@
 								<a href="_classes_surface_.surface.html#barycenter" class="tsd-kind-icon">barycenter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_classes_surface_.surface.html#baryvector" class="tsd-kind-icon">baryvector</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_classes_surface_.surface.html#integral" class="tsd-kind-icon">integral</a>
+								<a href="_classes_surface_.surface.html#draw" class="tsd-kind-icon">draw</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_classes_surface_.surface.html#pointisinside" class="tsd-kind-icon">point<wbr>IsInside</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_classes_surface_.surface.html#translate" class="tsd-kind-icon">translate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_classes_surface_.surface.html#intersect" class="tsd-kind-icon">intersect</a>
