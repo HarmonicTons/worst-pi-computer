@@ -8,7 +8,7 @@ export class World {
 
   constructor() {
     this.solids = {};
-    this.updater = new Updater(this);
+    this.updater = new Updater(this, 1, 60, 100);
   }
 
   public addSolid(solid: Solid) {

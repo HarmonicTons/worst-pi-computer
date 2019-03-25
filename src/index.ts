@@ -2,6 +2,7 @@ import { Solid } from "./classes/Solid";
 import { Surface } from "./classes/Surface";
 import { World } from "./classes/World";
 import logger from "./helpers/logger";
+import sleep from "./helpers/sleep";
 
 /**
  * Main process
@@ -29,26 +30,20 @@ async function main() {
 
   world.addSolid(s2);
 
-  logger.info(
-    world.draw({
-      from: { x: -2, y: -1.5 },
-      to: { x: 12, y: 1.5 }
-    })
-  );
-  world.updater.update(1);
-  logger.info(
-    world.draw({
-      from: { x: -2, y: -1.5 },
-      to: { x: 12, y: 1.5 }
-    })
-  );
-  world.updater.update(10);
-  logger.info(
-    world.draw({
-      from: { x: -2, y: -1.5 },
-      to: { x: 12, y: 1.5 }
-    })
-  );
+  world.updater.start();
+  for (let i = 0; i < 10; i++) {
+    logger.info(
+      world.draw({
+        from: { x: -2, y: -1.5 },
+        to: { x: 12, y: 1.5 }
+      })
+    );
+    logger.info(
+      `FPS: ${world.updater.FPS}; duration: ${world.updater.duration}`
+    );
+    await sleep(1000)();
+  }
+  world.updater.stop();
 
   logger.info("End");
 }

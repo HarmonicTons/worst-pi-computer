@@ -10,6 +10,14 @@ export class Vector {
   public static add(v1: Vector, v2: Vector): Vector {
     return new Vector({ coordinates: { x: v1.x + v2.x, y: v1.y + v2.y } });
   }
+  /**
+   * Multiply a vector and a scalar
+   * @param v vector
+   * @param s scalar
+   */
+  public static multiply(v: Vector, s: number): Vector {
+    return new Vector({ coordinates: { x: v.x * s, y: v.y * s } });
+  }
   public x: number;
   public y: number;
 
