@@ -21,7 +21,7 @@ test("compute mass", () => {
   expect(square.mass).toBeCloseTo(4 * 4);
 });
 
-describe("Check for impact", () => {
+describe("Check for collisions", () => {
   test("should return false if 2 solids do not intersect", () => {
     const s1 = new Solid({
       density: 1000,
@@ -36,7 +36,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: 0, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(false);
+    expect(Solid.checkForCollision(s1, s2)).toBe(false);
   });
 
   test("should return false if 2 solids intersect but are moving away one from the other", () => {
@@ -53,7 +53,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: 1, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(false);
+    expect(Solid.checkForCollision(s1, s2)).toBe(false);
 
     s1 = new Solid({
       density: 1000,
@@ -68,7 +68,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: -0.5, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(false);
+    expect(Solid.checkForCollision(s1, s2)).toBe(false);
 
     s1 = new Solid({
       density: 1000,
@@ -83,7 +83,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: -0.5, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(false);
+    expect(Solid.checkForCollision(s1, s2)).toBe(false);
 
     s1 = new Solid({
       density: 1000,
@@ -98,7 +98,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: 0, y: 1 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(false);
+    expect(Solid.checkForCollision(s1, s2)).toBe(false);
   });
 
   test("should return true if 2 solids intersect and are moving toward each other (X axis)", () => {
@@ -115,7 +115,7 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: -1, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(true);
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
   });
 
   test("should return true if 2 solids intersect and are moving toward each other (Y axis)", () => {
@@ -132,11 +132,11 @@ describe("Check for impact", () => {
       speed: new Vector({ coordinates: { x: 0, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(true);
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
   });
 });
 
-describe("Process impact", () => {
+describe("Process collision", () => {
   test("Total Kinetic Energy should not change", () => {
     const s1 = new Solid({
       density: 1000,
@@ -151,10 +151,10 @@ describe("Process impact", () => {
       speed: new Vector({ coordinates: { x: -1, y: 0 } })
     });
 
-    const beforeImpactKE = s1.kineticEnergy + s2.kineticEnergy;
-    expect(Solid.checkForImpact(s1, s2)).toBe(true);
-    const afterImpactKE = s1.kineticEnergy + s2.kineticEnergy;
-    expect(beforeImpactKE).toBeCloseTo(afterImpactKE);
+    const beforeCollisionKE = s1.kineticEnergy + s2.kineticEnergy;
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
+    const afterCollisionKE = s1.kineticEnergy + s2.kineticEnergy;
+    expect(beforeCollisionKE).toBeCloseTo(afterCollisionKE);
   });
 
   test("should transfert speed", () => {
@@ -171,7 +171,7 @@ describe("Process impact", () => {
       speed: new Vector({ coordinates: { x: 0, y: 0 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(true);
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
     const { x: x1, y: y1 } = s1.speed;
     expect(x1).toBeCloseTo(0);
     expect(y1).toBeCloseTo(0);
@@ -195,7 +195,7 @@ describe("Process impact", () => {
       speed: new Vector({ coordinates: { x: -0.2, y: -1 } })
     });
 
-    expect(Solid.checkForImpact(s1, s2)).toBe(true);
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
     const { x: x1, y: y1 } = s1.speed;
     expect(x1).toBeCloseTo(-0.2);
     expect(y1).toBeCloseTo(-1);
@@ -219,7 +219,7 @@ describe("Process impact", () => {
       speed: new Vector({ coordinates: { x: -0.2, y: -1 } })
     });
 
-    expect(Solid.checkForImpact(s2, s1)).toBe(true);
+    expect(Solid.checkForCollision(s2, s1)).toBe(true);
     const { x: x1, y: y1 } = s1.speed;
     expect(x1).toBeCloseTo(-0.2);
     expect(y1).toBeCloseTo(-1);

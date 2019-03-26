@@ -24,7 +24,7 @@ export class Solid {
    * @param s1 solid 1
    * @param s2 solid 2
    */
-  public static checkForImpact(s1: Solid, s2: Solid): boolean {
+  public static checkForCollision(s1: Solid, s2: Solid): boolean {
     if (!Surface.intersect(s1.surface, s2.surface)) {
       return false;
     }
@@ -44,16 +44,16 @@ export class Solid {
       return false;
     }
 
-    Solid.impact(s1, s2, xAxis, yAxis);
+    Solid.collision(s1, s2, xAxis, yAxis);
     return true;
   }
 
   /**
-   * Adjust the speed of 2 impacting solids
+   * Adjust the speed of 2 solids after collision
    * @param s1 solid 1
    * @param s2 solid 2
    */
-  private static impact(
+  private static collision(
     s1: Solid,
     s2: Solid,
     xAxis: boolean,
@@ -61,7 +61,7 @@ export class Solid {
   ): void {
     // s1 must be lightest
     if (s2.mass < s1.mass) {
-      return Solid.impact(s2, s1, xAxis, yAxis);
+      return Solid.collision(s2, s1, xAxis, yAxis);
     }
 
     const v1 = new Vector({ coordinates: s1.speed });

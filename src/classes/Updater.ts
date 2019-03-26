@@ -136,20 +136,20 @@ export class Updater {
       solid.translate(Vector.multiply(solid.speed, simulationTimeInMs / 1000));
     });
 
-    // Check for impacts
-    const impacts: Array<[Solid, Solid]> = [];
-    let nbOfImpacts = 0;
+    // Check for collisions
+    const collisions: Array<[Solid, Solid]> = [];
+    let nbOfCollisions = 0;
     solids.forEach((s1, i) => {
       solids.slice(i + 1).forEach(s2 => {
-        const res = Solid.checkForImpact(s1, s2);
+        const res = Solid.checkForCollision(s1, s2);
         if (res) {
-          nbOfImpacts++;
+          nbOfCollisions++;
         }
       });
     });
 
-    if (nbOfImpacts > 0) {
-      logger.info(`${nbOfImpacts} impact(s)`);
+    if (nbOfCollisions > 0) {
+      logger.info(`${nbOfCollisions} collision(s)`);
     }
 
     this.postUpdate(updateStartTS);
