@@ -59,40 +59,24 @@ export class Solid {
     xAxis: boolean,
     yAxis: boolean
   ): void {
-    // s1 must be lightest
-    if (s2.mass < s1.mass) {
-      return Solid.collision(s2, s1, xAxis, yAxis);
-    }
+    // input
+    const m1 = s1.mass;
+    const m2 = s2.mass;
+    const u1 = s1.speed;
+    const u2 = s2.speed;
 
+    // output
     const v1 = new Vector({ coordinates: s1.speed });
     const v2 = new Vector({ coordinates: s2.speed });
 
     if (xAxis) {
-      v1.x = s2.speed.x;
-      let sign = Math.sign(s2.speed.x);
-      if (s1.mass * s1.speed.x ** 2 >= s2.mass * s2.speed.x ** 2) {
-        sign = Math.sign(s1.speed.x);
-      }
-      v2.x =
-        sign *
-        Math.sqrt(
-          s2.speed.x ** 2 -
-            (s1.mass / s2.mass) * (s2.speed.x ** 2 - s1.speed.x ** 2)
-        );
+      v1.x = ((m1 - m2) * u1.x + 2 * m2 * u2.x) / (m1 + m2);
+      v2.x = (2 * m1 * u1.x + (m2 - m1) * u2.x) / (m1 + m2);
     }
 
     if (yAxis) {
-      v1.y = s2.speed.y;
-      let sign = Math.sign(s2.speed.y);
-      if (s1.mass * s1.speed.y ** 2 >= s2.mass * s2.speed.y ** 2) {
-        sign = Math.sign(s1.speed.y);
-      }
-      v2.y =
-        sign *
-        Math.sqrt(
-          s2.speed.y ** 2 -
-            (s1.mass / s2.mass) * (s2.speed.y ** 2 - s1.speed.y ** 2)
-        );
+      v1.y = ((m1 - m2) * u1.y + 2 * m2 * u2.y) / (m1 + m2);
+      v2.y = (2 * m1 * u1.y + (m2 - m1) * u2.y) / (m1 + m2);
     }
 
     s1.speed = v1;

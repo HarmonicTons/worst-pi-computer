@@ -13,7 +13,7 @@ async function main() {
   const world = new World();
 
   const s1 = new Solid({
-    density: 1000,
+    density: 1,
     origin: { x: 10, y: 0 },
     polarEquation: () => 0.5,
     speed: { x: -1, y: 0 }
@@ -31,7 +31,7 @@ async function main() {
   world.addSolid(s2);
 
   const s3 = new Solid({
-    density: 1000,
+    density: 1,
     origin: { x: 5, y: 0 },
     polarEquation: () => 0.5,
     speed: { x: 0, y: 0 }
@@ -40,7 +40,7 @@ async function main() {
   world.addSolid(s3);
 
   const s4 = new Solid({
-    density: 1000,
+    density: 1,
     origin: { x: 6, y: 0 },
     polarEquation: () => 0.5,
     speed: { x: 0, y: 0 }

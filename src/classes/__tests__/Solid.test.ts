@@ -197,12 +197,12 @@ describe("Process collision", () => {
 
     expect(Solid.checkForCollision(s1, s2)).toBe(true);
     const { x: x1, y: y1 } = s1.speed;
-    expect(x1).toBeCloseTo(-0.2);
-    expect(y1).toBeCloseTo(-1);
+    expect(x1).toBeCloseTo(-1.1818);
+    expect(y1).toBeCloseTo(-1.9818);
 
     const { x: x2, y: y2 } = s2.speed;
-    expect(x2).toBeCloseTo(0.369);
-    expect(y2).toBeCloseTo(-0.951);
+    expect(x2).toBeCloseTo(0.01818);
+    expect(y2).toBeCloseTo(-0.7818);
   });
 
   test("should work no matter arguments order", () => {
@@ -221,11 +221,11 @@ describe("Process collision", () => {
 
     expect(Solid.checkForCollision(s2, s1)).toBe(true);
     const { x: x1, y: y1 } = s1.speed;
-    expect(x1).toBeCloseTo(-0.2);
-    expect(y1).toBeCloseTo(-1);
+    expect(x1).toBeCloseTo(-1.1818);
+    expect(y1).toBeCloseTo(-1.9818);
 
     const { x: x2, y: y2 } = s2.speed;
-    expect(x2).toBeCloseTo(0.369);
-    expect(y2).toBeCloseTo(-0.951);
+    expect(x2).toBeCloseTo(0.01818);
+    expect(y2).toBeCloseTo(-0.7818);
   });
 });
