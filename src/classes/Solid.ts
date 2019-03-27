@@ -64,6 +64,10 @@ export class Solid {
     const m2 = s2.mass;
     const u1 = s1.speed;
     const u2 = s2.speed;
+    const COR = Math.min(
+      s1.coefficientOfRestitution,
+      s2.coefficientOfRestitution
+    );
 
     // output
     const v1 = new Vector({ coordinates: s1.speed });
@@ -72,28 +76,28 @@ export class Solid {
     if (xAxis) {
       if (m1 === Infinity || m2 === Infinity) {
         if (m1 === Infinity) {
-          v2.x = -v2.x;
+          v2.x = -COR * v2.x;
         }
         if (m2 === Infinity) {
-          v1.x = -v1.x;
+          v1.x = -COR * v1.x;
         }
       } else {
-        v1.x = ((m1 - m2) * u1.x + 2 * m2 * u2.x) / (m1 + m2);
-        v2.x = (2 * m1 * u1.x + (m2 - m1) * u2.x) / (m1 + m2);
+        v1.x = (COR * m2 * (u2.x - u1.x) + m1 * u1.x + m2 * u2.x) / (m1 + m2);
+        v2.x = (COR * m1 * (u1.x - u2.x) + m1 * u1.x + m2 * u2.x) / (m1 + m2);
       }
     }
 
     if (yAxis) {
       if (m1 === Infinity || m2 === Infinity) {
         if (m1 === Infinity) {
-          v2.y = -v2.y;
+          v2.y = -COR * v2.y;
         }
         if (m2 === Infinity) {
-          v1.y = -v1.y;
+          v1.y = -COR * v1.y;
         }
       } else {
-        v1.y = ((m1 - m2) * u1.y + 2 * m2 * u2.y) / (m1 + m2);
-        v2.y = (2 * m1 * u1.y + (m2 - m1) * u2.y) / (m1 + m2);
+        v1.y = (COR * m2 * (u2.y - u1.y) + m1 * u1.y + m2 * u2.y) / (m1 + m2);
+        v2.y = (COR * m1 * (u1.y - u2.y) + m1 * u1.y + m2 * u2.y) / (m1 + m2);
       }
     }
 
@@ -105,6 +109,7 @@ export class Solid {
   public density: number;
   public speed: Vector;
   public surface: Surface;
+  public coefficientOfRestitution: number;
 
   /**
    * Return a solid
@@ -113,22 +118,26 @@ export class Solid {
    * @param w.density density in kg/m3
    * @param w.speed speed in m/s
    * @param w.polarEquation polar equation desribing the surface of the solid from origin point
+   * @param [w.coefficientOfRestitution] coefficient of restitution
    */
   constructor({
     origin,
     density,
     speed,
-    polarEquation
+    polarEquation,
+    coefficientOfRestitution = 1
   }: {
     origin: ICoordinates;
     density: number;
     speed: ICoordinates;
     polarEquation: IPolarEquation;
+    coefficientOfRestitution?: number;
   }) {
     this.id = uuidv4();
     this.surface = new Surface({ polarEquation, origin });
     this.density = density;
     this.speed = new Vector({ coordinates: speed });
+    this.coefficientOfRestitution = coefficientOfRestitution;
   }
 
   public translate(translationVector: ICoordinates): void {

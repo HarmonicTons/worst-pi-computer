@@ -228,4 +228,30 @@ describe("Process collision", () => {
     expect(x2).toBeCloseTo(0.01818);
     expect(y2).toBeCloseTo(-0.7818);
   });
+
+  test("should vary according to coefficient of restitution", () => {
+    const s1 = new Solid({
+      coefficientOfRestitution: 0.5,
+      density: 1000,
+      origin: { x: 0, y: 0 },
+      polarEquation: () => 1,
+      speed: new Vector({ coordinates: { x: 1, y: 0 } })
+    });
+    const s2 = new Solid({
+      coefficientOfRestitution: 0.8,
+      density: 1000,
+      origin: { x: 1.9, y: 0 },
+      polarEquation: () => 1,
+      speed: new Vector({ coordinates: { x: 0, y: 0 } })
+    });
+
+    expect(Solid.checkForCollision(s1, s2)).toBe(true);
+    const { x: x1, y: y1 } = s1.speed;
+    expect(x1).toBeCloseTo(0.25);
+    expect(y1).toBeCloseTo(0);
+
+    const { x: x2, y: y2 } = s2.speed;
+    expect(x2).toBeCloseTo(0.75);
+    expect(y2).toBeCloseTo(0);
+  });
 });
