@@ -70,13 +70,31 @@ export class Solid {
     const v2 = new Vector({ coordinates: s2.speed });
 
     if (xAxis) {
-      v1.x = ((m1 - m2) * u1.x + 2 * m2 * u2.x) / (m1 + m2);
-      v2.x = (2 * m1 * u1.x + (m2 - m1) * u2.x) / (m1 + m2);
+      if (m1 === Infinity || m2 === Infinity) {
+        if (m1 === Infinity) {
+          v2.x = -v2.x;
+        }
+        if (m2 === Infinity) {
+          v1.x = -v1.x;
+        }
+      } else {
+        v1.x = ((m1 - m2) * u1.x + 2 * m2 * u2.x) / (m1 + m2);
+        v2.x = (2 * m1 * u1.x + (m2 - m1) * u2.x) / (m1 + m2);
+      }
     }
 
     if (yAxis) {
-      v1.y = ((m1 - m2) * u1.y + 2 * m2 * u2.y) / (m1 + m2);
-      v2.y = (2 * m1 * u1.y + (m2 - m1) * u2.y) / (m1 + m2);
+      if (m1 === Infinity || m2 === Infinity) {
+        if (m1 === Infinity) {
+          v2.y = -v2.y;
+        }
+        if (m2 === Infinity) {
+          v1.y = -v1.y;
+        }
+      } else {
+        v1.y = ((m1 - m2) * u1.y + 2 * m2 * u2.y) / (m1 + m2);
+        v2.y = (2 * m1 * u1.y + (m2 - m1) * u2.y) / (m1 + m2);
+      }
     }
 
     s1.speed = v1;

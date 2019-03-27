@@ -8,7 +8,7 @@ export class World {
 
   constructor() {
     this.solids = {};
-    this.updater = new Updater(this, 1, 60, 100);
+    this.updater = new Updater(this, 1, 1000, 100);
   }
 
   public addSolid(solid: Solid) {
@@ -48,14 +48,14 @@ export class World {
           x: (i * (to.x - from.x)) / X + from.x,
           y: (j * (to.y - from.y)) / Y + from.y
         };
-        return Object.values(this.solids).some(solid =>
+        return Object.values(this.solids).find(solid =>
           solid.surface.pointIsInside(point)
         );
       })
     );
 
     return matrix
-      .map(line => line.map(val => (val ? "#" : ".")).join(""))
+      .map(line => line.map(val => (val ? val.id[0] : ".")).join(""))
       .reverse()
       .join("\n");
   }

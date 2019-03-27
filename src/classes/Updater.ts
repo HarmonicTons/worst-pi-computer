@@ -12,6 +12,7 @@ export class Updater {
   public world: World;
   public isRunning: boolean;
   public updaterTimeSpeed: number;
+  public totalNumberOfCollisions: number;
   private lastUpdateTS: number;
   private updaterHistory: IHistoryElement[];
   private command: boolean;
@@ -44,6 +45,8 @@ export class Updater {
     this.updaterHistory = [] as IHistoryElement[];
     this.maxUPS = maxUPS;
     this.updaterHistoryLength = updaterHistoryLength;
+
+    this.totalNumberOfCollisions = 0;
   }
 
   /**
@@ -137,20 +140,14 @@ export class Updater {
     });
 
     // Check for collisions
-    const collisions: Array<[Solid, Solid]> = [];
-    let nbOfCollisions = 0;
     solids.forEach((s1, i) => {
       solids.slice(i + 1).forEach(s2 => {
         const res = Solid.checkForCollision(s1, s2);
         if (res) {
-          nbOfCollisions++;
+          this.totalNumberOfCollisions++;
         }
       });
     });
-
-    if (nbOfCollisions > 0) {
-      logger.info(`${nbOfCollisions} collision(s)`);
-    }
 
     this.postUpdate(updateStartTS);
   }

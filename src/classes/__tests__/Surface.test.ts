@@ -143,7 +143,7 @@ describe("Barycenter", () => {
     expect(y).toBeCloseTo(-0.3);
   });
 
-  test("get barycenter of surface's part", () => {
+  test("get baryvector of surface's part", () => {
     const square = new Surface({
       origin: { x: 0.2, y: -0.1 },
       polarEquation: angle =>
@@ -151,10 +151,10 @@ describe("Barycenter", () => {
     });
 
     const {
-      barycenter: { x, y }
+      baryvector: { x, y }
     } = square.integrate({ from: 0, to: Math.PI / 2 });
-    expect(x).toBeCloseTo(0.7);
-    expect(y).toBeCloseTo(0.4);
+    expect(x).toBeCloseTo(0.5);
+    expect(y).toBeCloseTo(0.5);
   });
 });
 

@@ -6,7 +6,12 @@ import { Vector } from "./Vector";
 
 export class Surface {
   get barycenter(): Point {
-    return this.integrate({}).barycenter;
+    const baryvectorWithOffset = Vector.add(
+      this.integrate({}).baryvector,
+      new Vector({ coordinates: this.origin })
+    );
+
+    return new Point(baryvectorWithOffset);
   }
 
   get area(): number {
@@ -45,7 +50,7 @@ export class Surface {
       from?: number;
       to?: number;
       nbOfSteps?: number;
-    }): { barycenter: Point; area: number } => {
+    }): { baryvector: Vector; area: number } => {
       const delta = (to - from) / nbOfSteps;
       const { vector, area } = [...Array(nbOfSteps)]
         .fill(0)
@@ -76,14 +81,15 @@ export class Surface {
             vector: Vector.add(sumVector, v)
           })
         );
-      const baryvector = Vector.add(
-        vector.scale(1 / area),
-        new Vector({ coordinates: this.origin })
-      );
       return {
         area,
-        barycenter: new Point(baryvector)
+        baryvector: vector.scale(1 / area)
       };
+    },
+    {
+      normalizer(args) {
+        return JSON.stringify(args);
+      }
     }
   );
 
